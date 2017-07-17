@@ -1,9 +1,7 @@
 package com.entity;
 
-/**
- * Created by 余文彪 on 2017/7/13.
- */
 public class User {
+
     private String user_id;
     private String user_name;
     private String user_sex;

@@ -1,6 +1,8 @@
 package com.entity;
 
-public class Menus {
+import java.io.Serializable;
+
+public class Menus{
     private String power_name;
     private String power_path;
     private String menu_tag;
