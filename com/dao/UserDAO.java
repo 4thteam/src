@@ -7,4 +7,8 @@ import com.entity.User;
  */
 public interface UserDAO {
     public User findUserByUseridAndUser_passwod(String user_id,String user_password);
+    public void SignIn(String user_id,String net_id,String sign_ip,String sign_time);
+    public void Out(String user_id,String sign_time);
+	
+	
 }
