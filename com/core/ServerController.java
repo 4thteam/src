@@ -20,7 +20,19 @@ public class ServerController {
         if (jsonObject.get("action") != null && jsonObject.get("action").equals("login")) {
             result = new LoginServer().doLogin(jsonObject);
         }
+        
+        if (jsonObject.get("action") != null && jsonObject.get("action").equals("balance")){
+        	result = String.valueOf((new ReturnBalanceServer().doReturnBalance(jsonObject)));
+        }
 
+        if(jsonObject.get("action") != null && jsonObject.get("action").equals("deposit")) {
+        	result = new DepositServer().doDeposit(jsonObject);
+        }
+        
+        if(jsonObject.get("action") != null && jsonObject.get("action").equals("withdrawal")) {
+        	result = new WithdrawalServer().doWithdrawal(jsonObject);
+        }
+        
         return result;
     }
 }
