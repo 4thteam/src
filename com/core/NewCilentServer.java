@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class NewCilentServer {
+
     public String doNew(JSONObject NewCilentMsg) {
 
         String ch_name = NewCilentMsg.getString("ch_name");

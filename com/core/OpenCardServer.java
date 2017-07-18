@@ -11,6 +11,7 @@ import com.factory.DAOFactory;
 import net.sf.json.JSONObject;
 
 public class OpenCardServer {
+
 	public String doNewCard(JSONObject CardMsg) {
 		String ch_name=CardMsg.getString("ch_name");
 		String id_card_num=CardMsg.getString("id_card_num");
