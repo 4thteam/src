@@ -50,10 +50,10 @@ public class UserDAOImpl implements UserDAO {
         return user;
     }
 
-    //上线记录
-    public void SignIn(String user_id, String net_id, String sign_ip, String sign_time) {
+    //登录日志
+    public void SignIn(String user_id, String net_id, String sign_ip, String sign_time, String out_time) {
 
-        String sql = "{call SIGN_IN(?,?,?,?)}";
+        String sql = "{call SIGN_IN(?,?,?,?,?)}";
         CallableStatement cstmt = null;
         Connection conn = DBConnection.getConnection();
         try {
@@ -62,28 +62,7 @@ public class UserDAOImpl implements UserDAO {
             cstmt.setString(2, sign_time);
             cstmt.setString(3, net_id);
             cstmt.setString(4, sign_ip);
-            cstmt.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            DBConnection.close(cstmt);
-            DBConnection.close(conn);
-        }
-    }
-
-    //下线记录
-    public void Out(String user_id, String login_time) {
-        java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        java.util.Date currentTime = new java.util.Date();//得到当前系统时间
-        String out_time = formatter.format(currentTime); //将日期时间格式化
-        Connection conn = DBConnection.getConnection();
-        String sql = "{call OUT(?,?,?)}";
-        CallableStatement cstmt = null;
-        try {
-            cstmt = conn.prepareCall(sql);
-            cstmt.setString(1, user_id);
-            cstmt.setString(2, login_time);
-            cstmt.setString(3, out_time);
+            cstmt.setString(5, out_time);
             cstmt.execute();
         } catch (SQLException e) {
             e.printStackTrace();

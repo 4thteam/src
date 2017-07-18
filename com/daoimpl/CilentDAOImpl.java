@@ -47,6 +47,8 @@ public class CilentDAOImpl implements CilentDAO {
             DBConnection.close(cstmt);
             DBConnection.close(conn);
         }
+        ;
+
         return is_vailable;
     }
 
@@ -73,12 +75,15 @@ public class CilentDAOImpl implements CilentDAO {
             cstmt.registerOutParameter(8, oracle.jdbc.OracleTypes.INTEGER);
             cstmt.execute();
             is_vailable = cstmt.getInt(8);
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             DBConnection.close(cstmt);
             DBConnection.close(conn);
         }
+        ;
+
         return is_vailable;
     }
 
@@ -99,12 +104,17 @@ public class CilentDAOImpl implements CilentDAO {
             cstmt.registerOutParameter(5, oracle.jdbc.OracleTypes.INTEGER);
             cstmt.execute();
             is_vailable = cstmt.getInt(5);
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             DBConnection.close(cstmt);
             DBConnection.close(conn);
         }
+        ;
+
         return is_vailable;
+
     }
+
 }

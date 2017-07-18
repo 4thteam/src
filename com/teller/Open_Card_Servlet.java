@@ -26,8 +26,7 @@ public class Open_Card_Servlet extends HttpServlet {
         String card_type = request.getParameter("card_type");
         String phone = request.getParameter("phone");
         String card_password = request.getParameter("card_password");
-//        String net_id = request.getSession().getAttribute("net_id").toString();
-        String net_id = "jjj";
+        String net_id = request.getSession().getAttribute("net_id").toString();
 
         //建立socket通信，连接服务器
         Socket socket = new Socket(url, port);
@@ -70,5 +69,4 @@ public class Open_Card_Servlet extends HttpServlet {
         out.flush();
         out.close();
     }
-
 }

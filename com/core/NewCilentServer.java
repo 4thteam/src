@@ -28,9 +28,11 @@ public class NewCilentServer {
         String phone = NewCilentMsg.getString("phone");
         String email = NewCilentMsg.getString("email");
         CilentDAO CilentDAO = DAOFactory.getCilentDAOInstance();
+
         // 插入以及返回插入结果
         int is_vailable = CilentDAO.New_Cilent(ch_name, en_name, sex, idcard_type, idcard_num, nickname, type, address,
                 nat, address_num, city, city_num, phone, email);
+
         // 输出结果
         Map<String, Object> CilentMsg = new HashMap<String, Object>();
 

@@ -21,53 +21,32 @@ import java.net.Socket;
 import java.util.*;
 
 /**
- * Created by 余文彪 on 2017/7/13.
+ * 登录功能
  */
 @WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
-
-    private String url = "127.0.0.1";
-    private int port = 9999;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //获取表单数据
         String user_id = request.getParameter("user_id");
         String password = request.getParameter("password");
+        String net_id = request.getParameter("net_id");
 
-        //建立socket通信，连接服务器
-        Socket socket = new Socket(url, port);
-        System.out.println("TELLER端已经成功的连接到ESB端！");
+        //从数据库判断用户是否存在
+        UserDAO userDAO = DAOFactory.getUserDAOInstance();
+        User user = userDAO.findUserByUseridAndUser_passwod(user_id, password);
+        if (user.getUser_name() != null) {
+            request.getSession().setAttribute("user", user.getUser_name());
+            request.getSession().setAttribute("role", user.getUser_role());
+            request.getSession().setAttribute("user_id", user_id);
+            request.getSession().setAttribute("net_id", net_id);
+            java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            java.util.Date currentTime = new java.util.Date();
+            String date = formatter.format(currentTime);
+            request.getSession().setAttribute("login_time", date);
 
-        //封装输入输出流
-        PrintWriter printWriter = new PrintWriter(socket.getOutputStream(), true);
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
-
-        //转换成Json格式
-        Map<String, String> loginMsg = new HashMap<>();
-        loginMsg.put("user_id", user_id);
-        loginMsg.put("password", password);
-        loginMsg.put("action", "login");
-        JSONObject jsonObject = JSONObject.fromObject(loginMsg);
-
-        //向socket通道写入消息
-        printWriter.println(jsonObject.toString());
-        System.out.println("TELLER端已经成功的向ESB端发送消息  " + "");
-
-        //从socket通道取出后端返回的结果
-        String result = bufferedReader.readLine();
-        System.out.println("TELLER端已经成功的从ESB端接收到响应消息 " + result);
-
-        //处理返回结果
-        JSONObject userMsg = JSONObject.fromObject(result);
-        String user_name = userMsg.getString("user");
-        String user_role = userMsg.getString("role");
-        System.out.println(user_name);
-
-        //将结果返回给jsp页面显示
-        if (user_name != null) {
-            request.getSession().setAttribute("user", user_name);
-            request.getSession().setAttribute("role", user_role);
+            //获取菜单集合
             MenusDAO menusDAO = DAOFactory.getMenusDAOInstance();
             List<Menus> menusList = menusDAO.findMenusById(user_id);
             request.setAttribute("menus", menusList);

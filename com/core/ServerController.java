@@ -16,11 +16,6 @@ public class ServerController {
     public String doAction() {
         String result = null;
 
-        //处理登录功能
-        if (jsonObject.get("action") != null && jsonObject.get("action").equals("login")) {
-            result = new LoginServer().doLogin(jsonObject);
-        }
-
         //处理新用户
         if (jsonObject.get("action") != null && jsonObject.get("action").equals("NewCilent")) {
             result = new NewCilentServer().doNew(jsonObject);
@@ -35,7 +30,7 @@ public class ServerController {
         if (jsonObject.get("action") != null && jsonObject.get("action").equals("ClosingCard")) {
             result = new OpenCardServer().doNewCard(jsonObject);
         }
-     
+
         return result;
     }
 }
