@@ -16,9 +16,19 @@ public class ServerController {
     public String doAction() {
         String result = null;
 
-        //处理登录功能
-        if (jsonObject.get("action") != null && jsonObject.get("action").equals("login")) {
-            result = new LoginServer().doLogin(jsonObject);
+        //处理新用户
+        if (jsonObject.get("action") != null && jsonObject.get("action").equals("NewCilent")) {
+            result = new NewCilentServer().doNew(jsonObject);
+        }
+
+        //办理新银行卡
+        if (jsonObject.get("action") != null && jsonObject.get("action").equals("NewCard")) {
+            result = new OpenCardServer().doNewCard(jsonObject);
+        }
+
+        //银行卡销户
+        if (jsonObject.get("action") != null && jsonObject.get("action").equals("ClosingCard")) {
+            result = new OpenCardServer().doNewCard(jsonObject);
         }
         
         if (jsonObject.get("action") != null && jsonObject.get("action").equals("balance")){

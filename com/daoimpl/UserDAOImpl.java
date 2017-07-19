@@ -4,10 +4,15 @@ import com.DBConnection;
 import com.dao.UserDAO;
 import com.entity.User;
 
-import java.sql.*;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
- * Created by 余文彪 on 2017/7/13.
+ * UserDAO实现类
  */
 public class UserDAOImpl implements UserDAO {
     @Override
@@ -23,7 +28,7 @@ public class UserDAOImpl implements UserDAO {
             cstmt.registerOutParameter(3, oracle.jdbc.OracleTypes.CURSOR);
             cstmt.execute();
             ResultSet rs = (ResultSet) cstmt.getObject(3);
-            if (rs!=null){
+            if (rs != null) {
                 if (rs.next()) {
                     user.setUser_id(rs.getString(1));
                     user.setUser_name(rs.getString(2));
@@ -43,5 +48,27 @@ public class UserDAOImpl implements UserDAO {
             DBConnection.close(conn);
         }
         return user;
+    }
+
+    //登录日志
+    public void SignIn(String user_id, String net_id, String sign_ip, String sign_time, String out_time) {
+
+        String sql = "{call SIGN_IN(?,?,?,?,?)}";
+        CallableStatement cstmt = null;
+        Connection conn = DBConnection.getConnection();
+        try {
+            cstmt = conn.prepareCall(sql);
+            cstmt.setString(1, user_id);
+            cstmt.setString(2, sign_time);
+            cstmt.setString(3, net_id);
+            cstmt.setString(4, sign_ip);
+            cstmt.setString(5, out_time);
+            cstmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.close(cstmt);
+            DBConnection.close(conn);
+        }
     }
 }
