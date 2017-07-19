@@ -43,6 +43,15 @@ public class ServerController {
         	result = new WithdrawalServer().doWithdrawal(jsonObject);
         }
         
+        if (jsonObject.get("action") != null && jsonObject.get("action").equals("LoanSettementRead")) {
+			result = new LoanSettementReadServer().doLoanSettementRead(jsonObject);
+		}
+	
+		if (jsonObject.get("action") != null && jsonObject.get("action").equals("LoanSettementWrite")) {
+			result = new LoanSettementWriteServer().doLoanSettementWrite(jsonObject);
+		}
+	
+        
         return result;
     }
 }
