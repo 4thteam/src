@@ -63,9 +63,9 @@ public class Open_Card_Servlet extends HttpServlet {
         response.setContentType("text/xml;charset=UTF-8");
         response.setHeader("Cache-Control", "no-cache");
         PrintWriter out = response.getWriter();
-        if (is_vailable == 1) out.println("银行卡开户成功");
-        if (is_vailable == 0) out.println("该用户为新用户请先登记新用户");
-        if (is_vailable == 2) out.println("同一个人在同一家银行(以法人为单位)只能开立一个Ⅰ类账户,请办理Ⅱ类或Ⅲ类");
+        if (is_vailable == 1) out.println(NewCardMsg.toString());
+        if (is_vailable == 0) out.println(NewCardMsg.toString());
+        if (is_vailable == 2) out.println(NewCardMsg.toString());
         out.flush();
         out.close();
     }
