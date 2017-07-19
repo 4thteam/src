@@ -30,19 +30,22 @@ public class ServerController {
         if (jsonObject.get("action") != null && jsonObject.get("action").equals("ClosingCard")) {
             result = new OpenCardServer().doNewCard(jsonObject);
         }
-        
-        if (jsonObject.get("action") != null && jsonObject.get("action").equals("balance")){
-        	result = String.valueOf((new ReturnBalanceServer().doReturnBalance(jsonObject)));
+
+        //查询余额
+        if (jsonObject.get("action") != null && jsonObject.get("action").equals("balance")) {
+            result = new ReturnBalanceServer().doReturnBalance(jsonObject);
         }
 
-        if(jsonObject.get("action") != null && jsonObject.get("action").equals("deposit")) {
-        	result = new DepositServer().doDeposit(jsonObject);
+        //存款
+        if (jsonObject.get("action") != null && jsonObject.get("action").equals("deposit")) {
+            result = new DepositServer().doDeposit(jsonObject);
         }
-        
-        if(jsonObject.get("action") != null && jsonObject.get("action").equals("withdrawal")) {
-        	result = new WithdrawalServer().doWithdrawal(jsonObject);
+
+        //取款
+        if (jsonObject.get("action") != null && jsonObject.get("action").equals("withdrawal")) {
+            result = new WithdrawalServer().doWithdrawal(jsonObject);
         }
-        
+
         return result;
     }
 }
