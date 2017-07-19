@@ -9,7 +9,7 @@ import com.factory.DAOFactory;
 import net.sf.json.JSONObject;
 
 public class ReturnBalanceServer {
-	public int doReturnBalance(JSONObject balanceMsg) {
+	public String doReturnBalance(JSONObject balanceMsg) {
 		
 		String cilent_card_id = balanceMsg.getString("cilent_card_id");
 		DepositAndWithdrawalDAO daw = DAOFactory.getDepositAndWithdrawalDAOInstance();
@@ -18,6 +18,6 @@ public class ReturnBalanceServer {
 		userBalanceMsg.put("balance", balance);
 		JSONObject jsonObject = JSONObject.fromObject(userBalanceMsg);
 		
-		return Integer.parseInt(jsonObject.toString());
+		return jsonObject.toString();
 	}
 }

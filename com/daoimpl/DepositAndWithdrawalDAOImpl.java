@@ -23,12 +23,9 @@ public class DepositAndWithdrawalDAOImpl implements DepositAndWithdrawalDAO{
 		try {
 			conn = DBConnection.getConnection();
 			call = conn.prepareCall(sql);
-			
 			call.registerOutParameter(1, OracleTypes.INTEGER);
 			call.setString(2, cardId);
-			
 			call.execute();
-			
 			balance = call.getInt(1);
 			return balance;
 		} catch (Exception ex) {
@@ -49,11 +46,9 @@ public class DepositAndWithdrawalDAOImpl implements DepositAndWithdrawalDAO{
 		try {
 			conn = DBConnection.getConnection();
 			call = conn.prepareCall(sql);
-			
 			call.setString(1, cardId);
 			call.setString(2, password);
 			call.setInt(3, money);
-			
 			call.execute();
 			return true;
 			
@@ -76,7 +71,6 @@ public class DepositAndWithdrawalDAOImpl implements DepositAndWithdrawalDAO{
 		try {
 			conn = DBConnection.getConnection();
 			call = conn.prepareCall(sql);
-			
 			call.setString(1, cardId);
 			call.setString(2, password);
 			call.setInt(3, money);
@@ -89,6 +83,5 @@ public class DepositAndWithdrawalDAOImpl implements DepositAndWithdrawalDAO{
 			DBConnection.close(call);
 			DBConnection.close(conn);
 		}
-		
 	}
 }
