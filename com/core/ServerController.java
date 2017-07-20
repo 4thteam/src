@@ -45,7 +45,7 @@ public class ServerController {
         if (jsonObject.get("action") != null && jsonObject.get("action").equals("withdrawal")) {
             result = new WithdrawalServer().doWithdrawal(jsonObject);
         }
-<<<<<<< HEAD
+
         
         if (jsonObject.get("action") != null && jsonObject.get("action").equals("LoanSettementRead")) {
 			result = new LoanSettementReadServer().doLoanSettementRead(jsonObject);
@@ -55,10 +55,26 @@ public class ServerController {
 			result = new LoanSettementWriteServer().doLoanSettementWrite(jsonObject);
 		}
 	
-        
-=======
+		if (jsonObject.get("action") != null && jsonObjevt.get("action").equals("randomnumber")) {
+			resule = new RandomNumberServer().dorandomnumber(jsonObject);
+		}
 
->>>>>>> 2563e8b2059a9e2c3ea731cb16778c938b2d11ef
+		if (jsonObject.get("action") != null && jsonObject.get("action").equals("finduser")) {
+			result = new FindUserServer().dofinduser(jsonObject);
+		}
+
+		if (jsonObject.get("action") != null && jsonObject.get("action").equals("writetime")) {
+			result = new WriteTimeServer().dowritetime(jsonObject);
+		}
+
+		if (jsonObject.get("action") != null && jsonObject.get("action").equals("readrate")) {
+			result = new ReadRateServer().doreadrate(jsonObject);
+		}
+
+		if (jsonObject.get("action") != null && jsonObject.get("action").equals("newtable")) {
+			result = new NewTableServer().donewtable(jsonObject);
+		}
+
         return result;
     }
 }
