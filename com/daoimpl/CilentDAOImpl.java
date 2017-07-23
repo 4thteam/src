@@ -80,8 +80,6 @@ public class CilentDAOImpl implements CilentDAO {
             DBConnection.close(cstmt);
             DBConnection.close(conn);
         }
-        ;
-
         return is_vailable;
     }
 

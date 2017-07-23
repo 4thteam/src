@@ -1,6 +1,10 @@
 package com;
 
 import java.sql.*;
+
+/**
+ * 数据库连接类
+ */
 public class DBConnection {
     //声明需要加载的驱动；
     private static String DRIVER_NAME = "oracle.jdbc.driver.OracleDriver";
@@ -24,31 +28,31 @@ public class DBConnection {
         return conn;
     }
 
-    public static void close(Connection conn){
-        if (conn!=null){
-            try{
+    public static void close(Connection conn) {
+        if (conn != null) {
+            try {
                 conn.close();
-            }catch (SQLException e){
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public static void close(PreparedStatement pstmt){
-        if (pstmt!=null){
-            try{
+    public static void close(PreparedStatement pstmt) {
+        if (pstmt != null) {
+            try {
                 pstmt.close();
-            }catch (SQLException e){
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public static void close(ResultSet rs){
-        if (rs!=null){
-            try{
+    public static void close(ResultSet rs) {
+        if (rs != null) {
+            try {
                 rs.close();
-            }catch (SQLException e){
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }

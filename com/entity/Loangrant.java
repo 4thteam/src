@@ -3,7 +3,7 @@ package com.entity;
 public class Loangrant {
 
 	private String user_loan_no;//贷款号	
-	private int user_dd_no;//发放号
+	private String user_dd_no;//发放号
 	private int user_needmoney;//贷款额度
 	private String user_name;//贷款人
 	private String user_number;//贷款人客户号
@@ -23,12 +23,11 @@ public class Loangrant {
         this.user_loan_no = user_loan_no;
     }
     
-    public int getUser_dd_no(){
+    public String getUser_dd_no(){
     	return user_dd_no;
     }
     
-    
-    public void setUser_dd_no(int user_dd_no){
+    public void setUser_dd_no(String user_dd_no){
     	this.user_dd_no = user_dd_no;
     }
 

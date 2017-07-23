@@ -4,7 +4,7 @@ import com.entity.Loangrant;
 
 public interface LoangrantDAO {
 
-	public Loangrant RandomNumber();
+	public String RandomNumber();
 
 	public Loangrant findUserbyloan_no(String loan_no);
 
@@ -13,7 +13,7 @@ public interface LoangrantDAO {
 
 	public Loangrant readrate(String int_type);
 
-	public void NewTable(int dd_no, String name, String maturity,
+	public String NewTable(int dd_no, String name, String maturity,
 			String dd_date, int dd_amt, double actual_rate, double basis_rate,
 			double plty_rate);
 }

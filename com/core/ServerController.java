@@ -1,5 +1,11 @@
 package com.core;
 
+import com.core.depositAndWithdraw.DepositServer;
+import com.core.depositAndWithdraw.ReturnBalanceServer;
+import com.core.depositAndWithdraw.WithdrawalServer;
+import com.core.loan.*;
+import com.core.open.NewCilentServer;
+import com.core.open.OpenCardServer;
 import net.sf.json.JSONObject;
 
 /**
@@ -54,26 +60,30 @@ public class ServerController {
 		if (jsonObject.get("action") != null && jsonObject.get("action").equals("LoanSettementWrite")) {
 			result = new LoanSettementWriteServer().doLoanSettementWrite(jsonObject);
 		}
-	
-		if (jsonObject.get("action") != null && jsonObjevt.get("action").equals("randomnumber")) {
-			resule = new RandomNumberServer().dorandomnumber(jsonObject);
+
+		//获取发放号
+		if (jsonObject.get("action") != null && jsonObject.get("action").equals("random_number")) {
+			result = new RandomNumberServer().dorandomnumber();
 		}
 
+		//根据贷款号获取贷款人信息
 		if (jsonObject.get("action") != null && jsonObject.get("action").equals("finduser")) {
 			result = new FindUserServer().dofinduser(jsonObject);
 		}
 
-		if (jsonObject.get("action") != null && jsonObject.get("action").equals("writetime")) {
-			result = new WriteTimeServer().dowritetime(jsonObject);
-		}
-
-		if (jsonObject.get("action") != null && jsonObject.get("action").equals("readrate")) {
+		//根据利率号获取利率信息
+		if (jsonObject.get("action") != null && jsonObject.get("action").equals("read_rate")) {
 			result = new ReadRateServer().doreadrate(jsonObject);
 		}
 
 		if (jsonObject.get("action") != null && jsonObject.get("action").equals("newtable")) {
 			result = new NewTableServer().donewtable(jsonObject);
 		}
+
+        //处理贷款开户功能
+        if(jsonObject.get("action")!=null && jsonObject.get("action").equals("LoanAccOpen")){
+            result = new LoanAccOpenServer().doLoanOpen(jsonObject);
+        }
 
         return result;
     }
