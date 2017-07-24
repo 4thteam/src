@@ -18,11 +18,11 @@ import com.factory.DAOFactory;
 import net.sf.json.JSONObject;
 
 /**
- * Servlet implementation class New_Cilent
+ * 账户开户
  */
 @WebServlet(name = "New_Client_Servlet", urlPatterns = {"/open_customer"})
 public class New_Cilent_Servlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+
     private String url = "127.0.0.1";
     private int port = 9999;
 
@@ -83,7 +83,7 @@ public class New_Cilent_Servlet extends HttpServlet {
         response.setHeader("Cache-Control", "no-cache");
         PrintWriter out = response.getWriter();
         if (is_vailable != 0 && is_vailable == 1) out.println("新用户登记成功！");
-        else out.println("用户插入失败！");
+        else out.println("用户登记失败！");
         out.flush();
         out.close();
     }

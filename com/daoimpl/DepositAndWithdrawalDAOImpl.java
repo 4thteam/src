@@ -15,7 +15,7 @@ import oracle.jdbc.OracleTypes;
 public class DepositAndWithdrawalDAOImpl implements DepositAndWithdrawalDAO{
 	
 	//通过调用数据库存储函数来查询客户账户余额
-	public int findBalanceById(String cardId) {
+	public synchronized int findBalanceById(String cardId) {
 		int balance = 0;
 		String sql = "{?=call ReturnBalance(?)}";
 		Connection conn = null;
@@ -38,7 +38,7 @@ public class DepositAndWithdrawalDAOImpl implements DepositAndWithdrawalDAO{
 	}
 	
 	@Override
-	public boolean depositById(String cardId,String password,int money) {
+	public synchronized boolean depositById(String cardId,String password,int money) {
 		String sql = "{call StoryMoney(?,?,?)}";
 		Connection conn = null;
 		CallableStatement call = null;
@@ -63,7 +63,7 @@ public class DepositAndWithdrawalDAOImpl implements DepositAndWithdrawalDAO{
 	}
 
 	@Override
-	public boolean withdrawalById(String cardId,String password,int money) {
+	public synchronized boolean withdrawalById(String cardId,String password,int money) {
 		String sql = "{call WithDrawal(?,?,?)}";
 		Connection conn = null;
 		CallableStatement call = null;

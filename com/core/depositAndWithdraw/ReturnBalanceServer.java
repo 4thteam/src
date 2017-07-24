@@ -9,6 +9,7 @@ import com.factory.DAOFactory;
 import net.sf.json.JSONObject;
 
 public class ReturnBalanceServer {
+
 	public String doReturnBalance(JSONObject balanceMsg) {
 		
 		String cilent_card_id = balanceMsg.getString("cilent_card_id");
